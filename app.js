@@ -22,7 +22,7 @@ document.querySelectorAll(".box").forEach((elt,i)=>{
 })
 
 function checkWinner(){
-    combinations.forEach((combi) => {
+    let findStatus=combinations.find((combi) => {
         console.log(res[combi[0]],res[combi[1]],res[combi[2]]);
         if (
             res[combi[0]] === res[combi[1]] &&
@@ -30,19 +30,21 @@ function checkWinner(){
             res[combi[0]] !== undefined
         ) {
             endGame(res[combi[0]] ? "X" : "O");
-            return;
-        } else if (click >= 9) {
-            endGame("draw");
+            return true
         }
-    });    
+    });  
+    if (click >= 9&&(!findStatus)) {
+        endGame("draw");
+    }  
 }
 
 function endGame(winner){
+    console.log(winner)
     if(winner=="draw"){
         document.getElementById("winner-full").innerHTML="The match is a draw!"
     }
     else{
-        document.getElementById("winner").innerText=winner;
+        document.getElementById("winner-full").innerText = `'${winner}' Won the game!`;
     }
     document.getElementById("result-overlay").classList.add("active");
 }
