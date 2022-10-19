@@ -23,7 +23,6 @@ document.querySelectorAll(".box").forEach((elt,i)=>{
 
 function checkWinner(){
     let findStatus=combinations.find((combi) => {
-        console.log(res[combi[0]],res[combi[1]],res[combi[2]]);
         if (
             res[combi[0]] === res[combi[1]] &&
             res[combi[1]] === res[combi[2]] &&
